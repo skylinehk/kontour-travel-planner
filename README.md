@@ -5,7 +5,7 @@ AI agent skill for world-class travel planning using [Kontour AI](https://kontou
 ## Install
 
 ```bash
-npx skills add skylinehk/kontour-travel-planner
+npx skills add Bookingdesk-AI/kontour-travel-planner
 ```
 
 Or browse on [skills.sh](https://skills.sh) and [clawhub.com](https://clawhub.com).
@@ -43,7 +43,7 @@ Ground truth files in `references/`:
 ## Links
 
 - [Kontour AI](https://kontour.ai) — Interactive map planning and booking
-- [GitHub](https://github.com/skylinehk/kontour-travel-planner)
+- [GitHub](https://github.com/Bookingdesk-AI/kontour-travel-planner)
 
 ## License
 
