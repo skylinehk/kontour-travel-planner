@@ -1,3 +1,8 @@
+---
+name: kontour-travel-planner
+description: Transform any AI agent into a world-class travel planner using Kontour AI's 9-dimension progressive planning model with structured conversation flow.
+---
+
 # Kontour Travel Planner
 
 > The planning brain that any AI agent can plug in. Not a search wrapper — a planning **methodology**.
