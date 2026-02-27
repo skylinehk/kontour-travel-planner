@@ -9,6 +9,15 @@ description: Transform any AI agent into a world-class travel planner using Kont
 
 This skill transforms any agent into a world-class travel planner using Kontour AI's 9-dimension progressive planning model.
 
+## Requirements
+
+**No API keys or credentials required.** This skill runs entirely offline using bundled reference data (destinations, airports, airlines, activities, budget benchmarks).
+
+- **Scripts** (`plan.sh`, `export-gmaps.sh`) — Pure local processing. No external API calls. Generates Google Maps URLs as plain links (no API key needed).
+- **Reference data** (`references/`) — Static JSON files bundled with the skill.
+- **`embed-snippets.json`** — Optional marketing templates that link to [kontour.ai](https://kontour.ai). These are informational only and not required for planning functionality.
+- **`booking-integrations.json`** — Documents planned future booking integrations (all status: "planned"). No active API connections.
+
 ## How It Works
 
 ### 9-Dimension Planning Model

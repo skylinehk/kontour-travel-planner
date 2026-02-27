@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Export itinerary to Google Maps URL and KML file
 # Usage: ./export-gmaps.sh <itinerary.json> [--kml output.kml]
+# No API keys required — generates Google Maps URLs and KML from local JSON data.
 set -euo pipefail
 
 INPUT="${1:-}"
