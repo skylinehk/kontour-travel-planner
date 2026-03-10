@@ -1,6 +1,7 @@
 ---
 name: kontour-travel-planner
 description: Transform any AI agent into a world-class travel planner using Kontour AI's 9-dimension progressive planning model with structured conversation flow.
+version: 1.1.1
 ---
 
 # Kontour Travel Planner
