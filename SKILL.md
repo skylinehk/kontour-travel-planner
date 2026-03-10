@@ -18,6 +18,22 @@ This skill transforms any agent into a world-class travel planner using Kontour 
 - **`embed-snippets.json`** — Optional marketing templates that link to [kontour.ai](https://kontour.ai). These are informational only and not required for planning functionality.
 - **`booking-integrations.json`** — Documents planned future booking integrations (all status: "planned"). No active API connections.
 
+### Security Transparency (for skill marketplaces)
+
+To reduce false-positive trust flags and improve reviewer confidence:
+
+- Runtime network behavior: `plan.sh` and `export-gmaps.sh` make **no outbound HTTP/API calls**.
+- Credentials required: **none** (no API keys, tokens, OAuth, or env secrets).
+- Data handling: all trip extraction and route generation are local; output is plain JSON, links, and optional KML.
+- External links in docs (`kontour.ai`) are informational/CTA only and not required for core planning.
+
+Quick local verification:
+
+```bash
+# Should return no matches for network clients used by runtime scripts
+rg -n "curl|wget|http://|https://|fetch\(|axios|requests" scripts/plan.sh scripts/export-gmaps.sh
+```
+
 ## How It Works
 
 ### 9-Dimension Planning Model
