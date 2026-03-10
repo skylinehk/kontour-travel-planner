@@ -1,46 +1,51 @@
 {
   "loop": "adaptive-ralph-v1",
-  "updated_at": "2026-03-10T10:06:00-08:00",
+  "updated_at": "2026-03-10T10:09:00-08:00",
   "strategy": "implement",
   "outcome": "shipped_with_publish_blocker",
   "progress_delta": 1,
-  "confidence": 0.79,
+  "confidence": 0.84,
   "risk": "low",
   "blockers": [
-    "Initial git pull --rebase was blocked by unstaged local changes; resolved via temporary stash and rebase conflict resolution.",
-    "clawhub publish . --no-input failed: --version must be valid semver"
+    "Direct web_fetch for ClawHub page returned near-empty content twice; used browser snapshot as fallback evidence source.",
+    "clawhub publish /Users/kh/.openclaw/workspace/skills/kontour-travel-planner --version 1.1.1 failed: Publish payload: acceptLicenseTerms: invalid value"
   ],
-  "next_action": "Address marketplace trust signal by adding explicit no-network/no-credentials declaration in metadata or release notes, then clean working tree and retry pull/rebase.",
+  "next_action": "Set/confirm publish license acceptance input expected by current clawhub CLI/API and retry publish for v1.1.1.",
   "last_feedback_digest": {
     "sources": [
       "https://skills.sh/bookingdesk-ai/kontour-travel-planner/kontour-travel-planner",
       "https://clawhub.ai/skylinehk/kontour-travel-planner"
     ],
+    "baseline": {
+      "git_head": "8d45397",
+      "remote_visible_version": "v1.1.0",
+      "local_version_marker": "version: 1.1.1 (added this run)"
+    },
     "signals": [
       {
-        "type": "security/trust",
+        "type": "packaging",
         "severity": "high",
-        "confidence": 0.93,
-        "note": "ClawHub flags skill as suspicious (OpenClaw + VirusTotal), citing unresolved declaration gaps around scripts/external links/data sharing questions."
+        "confidence": 0.95,
+        "note": "Previous publish blocker was semver requirement; explicit version metadata was missing from SKILL frontmatter."
+      },
+      {
+        "type": "docs",
+        "severity": "medium",
+        "confidence": 0.86,
+        "note": "skills.sh now shows Requirements section clarifying offline/no-credentials behavior, indicating prior docs enhancement propagated."
       },
       {
         "type": "discoverability",
         "severity": "medium",
-        "confidence": 0.74,
-        "note": "Skills.sh security audit shows Gen Agent Trust Hub = Fail while other audits pass; likely reducing install trust conversion."
-      },
-      {
-        "type": "feedback-volume",
-        "severity": "low",
-        "confidence": 0.66,
-        "note": "No user comments visible on ClawHub; rely on scanner/platform signals for improvements."
+        "confidence": 0.91,
+        "note": "ClawHub still flags suspicious security status; comments remain empty and installs remain 0 current/0 all-time on page snapshot."
       }
     ],
     "applied_issue": {
-      "type": "docs",
+      "type": "packaging",
       "severity": "high",
-      "confidence": 0.9,
-      "summary": "Added explicit Security Transparency section in SKILL.md with no-network/no-credentials/data-handling declarations and a reproducible verification command."
+      "confidence": 0.94,
+      "summary": "Added explicit semver version marker (1.1.1) to SKILL.md frontmatter to satisfy publish/version consistency requirements."
     }
   }
 }
