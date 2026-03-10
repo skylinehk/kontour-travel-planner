@@ -1,51 +1,72 @@
 {
-  "loop": "adaptive-ralph-v1",
-  "updated_at": "2026-03-10T10:09:00-08:00",
-  "strategy": "implement",
+  "loop": "adaptive-ralph-v2",
+  "updated_at": "2026-03-10T10:58:00-08:00",
+  "strategy": "research",
   "outcome": "shipped_with_publish_blocker",
   "progress_delta": 1,
-  "confidence": 0.84,
+  "confidence": 0.82,
   "risk": "low",
   "blockers": [
-    "Direct web_fetch for ClawHub page returned near-empty content twice; used browser snapshot as fallback evidence source.",
-    "clawhub publish /Users/kh/.openclaw/workspace/skills/kontour-travel-planner --version 1.1.1 failed: Publish payload: acceptLicenseTerms: invalid value"
+    "Repeated publish blocker (2nd run): clawhub publish ... -> Publish payload: acceptLicenseTerms: invalid value",
+    "Agent Trust Hub findings appear stale against older package snapshot and still report python3 -c interpolation path"
   ],
-  "next_action": "Set/confirm publish license acceptance input expected by current clawhub CLI/API and retry publish for v1.1.1.",
+  "next_action": "Research exact ClawHub CLI/API requirement for acceptLicenseTerms field and complete publish of v1.1.2 so ATH/ClawHub can re-scan latest commit.",
   "last_feedback_digest": {
     "sources": [
-      "https://skills.sh/bookingdesk-ai/kontour-travel-planner/kontour-travel-planner",
+      "https://skills.sh/bookingdesk-ai/kontour-travel-planner/kontour-travel-planner/security/agent-trust-hub",
+      "https://skills.sh/bookingdesk-ai/kontour-travel-planner/kontour-travel-planner/security/socket",
+      "https://skills.sh/bookingdesk-ai/kontour-travel-planner/kontour-travel-planner/security/snyk",
       "https://clawhub.ai/skylinehk/kontour-travel-planner"
     ],
-    "baseline": {
-      "git_head": "8d45397",
-      "remote_visible_version": "v1.1.0",
-      "local_version_marker": "version: 1.1.1 (added this run)"
+    "security_verdicts": {
+      "agent_trust_hub": {
+        "verdict": "Fail",
+        "risk": "HIGH",
+        "codes": [
+          "COMMAND_EXECUTION",
+          "REMOTE_CODE_EXECUTION",
+          "PROMPT_INJECTION"
+        ],
+        "analyzed_at": "Mar 9, 2026, 11:12 AM",
+        "note": "Report claims scripts/plan.sh uses python3 -c with unsanitized interpolation."
+      },
+      "socket": {
+        "verdict": "Pass",
+        "risk": "not flagged",
+        "analyzed_at": "Mar 9, 2026, 11:12 AM"
+      },
+      "snyk": {
+        "verdict": "Pass",
+        "risk": "LOW",
+        "analyzed_at": "Mar 9, 2026, 11:12 AM",
+        "note": "No issues detected."
+      },
+      "clawhub": {
+        "verdict": "Suspicious",
+        "risk": "medium confidence",
+        "reason": "Manifest declaration gaps for credentials/network/data-sharing vs scripts and external links",
+        "market_version": "v1.1.0"
+      }
     },
-    "signals": [
+    "issue_candidates": [
       {
         "type": "packaging",
         "severity": "high",
-        "confidence": 0.95,
-        "note": "Previous publish blocker was semver requirement; explicit version metadata was missing from SKILL frontmatter."
+        "confidence": 0.96,
+        "summary": "Marketplace still serves/scans older v1.1.0 while repo has newer security fixes; publish pipeline blocker prevents trust flag refresh."
       },
       {
         "type": "docs",
         "severity": "medium",
-        "confidence": 0.86,
-        "note": "skills.sh now shows Requirements section clarifying offline/no-credentials behavior, indicating prior docs enhancement propagated."
-      },
-      {
-        "type": "discoverability",
-        "severity": "medium",
-        "confidence": 0.91,
-        "note": "ClawHub still flags suspicious security status; comments remain empty and installs remain 0 current/0 all-time on page snapshot."
+        "confidence": 0.9,
+        "summary": "Manifest alignment gap explicitly called out by ClawHub scanner."
       }
     ],
     "applied_issue": {
-      "type": "packaging",
-      "severity": "high",
-      "confidence": 0.94,
-      "summary": "Added explicit semver version marker (1.1.1) to SKILL.md frontmatter to satisfy publish/version consistency requirements."
+      "type": "docs",
+      "severity": "medium",
+      "confidence": 0.9,
+      "summary": "Updated SKILL frontmatter to version 1.1.2 and added explicit manifest metadata: license MIT-0, runtime network none, credentials_required false, writes_files true."
     }
   }
 }
